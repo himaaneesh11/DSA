@@ -96,6 +96,91 @@ public class DoublyLinkedList {
         }
         size++;
     }
+    public void  Deletionfrombeggining(){
+        if(head==null){
+            System.out.println("The list is empty");
+            return;
+        }
+        head=head.next;
+        head.prevnode=null;
+    }
+    public void DeletefromEnd(){
+        if(head==null){
+            System.out.println("The list is empty");
+            return;
+        }
+        DoubleNode temp=head;
+        while(temp.next.next!=null){
+            temp=temp.next;
+        }
+        temp.next=null;
+        size--;
+
+    }
+    public void Deletefromposition(int position) {
+        if (head == null) {
+            System.out.println("The list is empty");
+            return;
+        }
+        if (position == 1) {
+            Deletionfrombeggining();
+            return;
+        }
+        if (position < 0 || position > size) {
+            System.out.println("Position out of range");
+        }
+        int curpos = 1;
+        DoubleNode temp = head;
+        DoubleNode sprevnode=null;
+        while(temp!=null){
+            if(curpos==position){
+                break;
+            }
+            temp=temp.next;
+            curpos++;
+        }
+        if(temp==null){
+            System.out.println("Such position doesnt exist");
+        }
+        sprevnode.next=temp.next;
+        if(temp.next!=null){
+            temp.next.prevnode=temp.prevnode;
+            temp.next=null;
+        }
+        temp.prevnode=null;
+
+        size--;
+    }
+
+    public void DeletefromaValue(int value){
+        if(head.data==value){
+            Deletionfrombeggining();
+            return;
+        }
+        if(head==null){
+            System.out.println("The list is empty");
+            return;
+        }
+        DoubleNode temp=head,sprevnode;
+        while((temp!=null) && (temp.data!=value)){
+            temp=temp.next;
+        }
+        if(temp==null){
+            System.out.println("Such value doesnt exist");
+            return;
+        }
+        sprevnode=temp.prevnode;
+        if(temp.next!=null){
+            sprevnode.next=temp.next;
+            temp.next.prevnode=temp.prevnode;
+        }
+        else{
+            temp.next=null;
+            temp.prevnode=sprevnode;
+            sprevnode.next=temp;
+        }
+
+    }
 
     public static void main(String[] args) {
         DoublyLinkedList obj=new DoublyLinkedList();
@@ -103,9 +188,9 @@ public class DoublyLinkedList {
         obj.InsertionatBeggining(2);
         obj.InsertionatBeggining(3);
         obj.InsertatEnd(0);
-        obj.InsertatEnd(-1);
         obj.InsertionatBeggining(4);
         obj.InsertatPosition(99,3);
+        //obj.DeletefromaValue(3);
         obj.traverse();
         System.out.println("\nThe size of the list is "+obj.size);
 
