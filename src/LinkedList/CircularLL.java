@@ -59,6 +59,27 @@ public class CircularLL {
         temp.next=newnode;
         size++;
     }
+    public void Insertbeforeposition(int value,int position){
+        Node newnode=new Node(value);
+        if(position<1 || position>size+1){
+            System.out.println("Invalid position");
+            return;
+        }
+        if (head==null || position==1){
+            Insertaatabeggining(value);
+            return;
+        }
+
+        int currpos=1;
+        Node temp=head;
+        while(currpos<position-1){
+            temp=temp.next;
+            currpos++;
+        }
+        newnode.next=temp.next;
+        temp.next=newnode;
+        size++;
+    }
     public static void main(String[] args) {
 
     }
