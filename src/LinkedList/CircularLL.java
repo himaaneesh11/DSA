@@ -6,7 +6,11 @@ public class CircularLL {
     public void Insertaatabeggining(int data){
         Node newnode=new Node(data);
         if(head==null){
-            head=newnode;
+            head = newnode;
+            newnode.next = head;
+            tail=newnode;
+            size++;
+            return;
         }
         Node temp=head;
         newnode.next=head;
@@ -80,7 +84,24 @@ public class CircularLL {
         temp.next=newnode;
         size++;
     }
+    public void Traversal(){
+        Node temp=head;
+        do{
+            System.out.print(temp.data+"->");
+            temp=temp.next;
+        }while(temp!=head);
+        System.out.print("END");
+    }
     public static void main(String[] args) {
+        CircularLL obj=new CircularLL();
+        obj.Insertaatabeggining(1);
+        obj.Insertaatabeggining(2);
+        obj.Insertaatabeggining(3);
+        obj.Insertaatabeggining(4);
+        obj.Insertaatabeggining(5);
+        obj.Insertaatabeggining(6);
+        obj.Insertaftervalue(1,0);
+        obj.Traversal();
 
     }
 }
