@@ -1,6 +1,6 @@
 package LinkedList;
 
-public class ExerciseonDLL {
+public class ExerciseonDLL{
     DoubleNode head;
     DoubleNode tail;
     public void count(){
@@ -47,7 +47,6 @@ public class ExerciseonDLL {
         * }
         * */
     }
-
     public void reverseDLL(){
         DoubleNode temp=head;
         DoubleNode current=null;
