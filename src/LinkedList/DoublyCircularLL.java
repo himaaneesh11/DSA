@@ -33,10 +33,24 @@ public class DoublyCircularLL {
      }while(temp!=head);
         System.out.print("END");
     }
+    public void Insertionatend(int data){
+        DoubleNode newnode=new DoubleNode(data);
+        if(head==null){
+            Insertatbeggining(data);
+        }
+        newnode.next=head;
+        tail.next=newnode;
+        newnode.prevnode=tail;
+        head.prevnode=newnode;
+        tail=newnode;
+        size++;
+    }
     public static void main(String[] args) {
         DoublyCircularLL obj=new DoublyCircularLL();
         obj.Insertatbeggining(1);
         obj.Insertatbeggining(2);
+        obj.Insertionatend(0);
+        obj.Insertionatend(-1);
         obj.Traversal();
     }
 }
