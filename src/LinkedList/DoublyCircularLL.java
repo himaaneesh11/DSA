@@ -74,6 +74,26 @@ public class DoublyCircularLL {
         temp.prevnode=newnode;
         size++;
     }
+    public void Insertaftervalue(int data,int value){
+        DoubleNode newnode=new DoubleNode(data);
+        if(head==null){
+            System.out.println("No such value exist");
+            return;
+        }
+        DoubleNode temp=head;
+        do{
+            if(temp.data==value){
+                newnode.next=temp.next;
+                temp.next.prevnode=newnode;
+                temp.next=newnode;
+                newnode.prevnode=temp;
+                size++;
+                return;
+            }
+            temp=temp.next;
+        }while(temp!=head);
+        System.out.println("Value does not exist");
+    }
     public static void main(String[] args) {
         DoublyCircularLL obj=new DoublyCircularLL();
         obj.Insertatbeggining(1);
@@ -82,6 +102,7 @@ public class DoublyCircularLL {
         obj.Insertionatend(-1);
         obj.Insertionatposition(3,1);
         obj.Insertionatposition(99,6);
+        obj.Insertaftervalue(100,99);
         obj.Traversal();
     }
 }
