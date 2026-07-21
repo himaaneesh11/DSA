@@ -45,12 +45,43 @@ public class DoublyCircularLL {
         tail=newnode;
         size++;
     }
+    public void Insertionatposition(int data,int position){
+        DoubleNode newnode=new DoubleNode(data);
+        if(position<1 || position>size+1){
+            System.out.println("Invalid position");
+            return;
+        }
+        if(head==null || position==1){
+            if(head==null) {
+                System.out.println("List is empty");
+            }
+            Insertatbeggining(data);
+            return;
+        }
+        if(position == size + 1){
+            Insertionatend(data);
+            return;
+        }
+        int curpos=1;
+        DoubleNode temp=head;
+        while(curpos<position){
+            temp=temp.next;
+            curpos++;
+        }
+        temp.prevnode.next=newnode;
+        newnode.prevnode=temp.prevnode;
+        newnode.next=temp;
+        temp.prevnode=newnode;
+        size++;
+    }
     public static void main(String[] args) {
         DoublyCircularLL obj=new DoublyCircularLL();
         obj.Insertatbeggining(1);
         obj.Insertatbeggining(2);
         obj.Insertionatend(0);
         obj.Insertionatend(-1);
+        obj.Insertionatposition(3,1);
+        obj.Insertionatposition(99,6);
         obj.Traversal();
     }
 }
